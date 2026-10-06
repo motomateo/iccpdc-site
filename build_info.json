@@ -1,7 +1,7 @@
 {
- "built_at": "2026-10-06T06:25:39+00:00",
+ "built_at": "2026-10-06T06:45:57+00:00",
  "source_repo": "motomateo/iccpdc (private)",
- "source_commit": "f19753754433ff54a71459768e7fe7242b5e4318",
+ "source_commit": "e2b853b310c9920e32fd300eb9bedaf9a8cfd433",
  "source_dirty": false,
  "image_profiles": {
   "scans": [
@@ -22,7 +22,7 @@
  },
  "site_url": "https://motomateo.github.io/iccpdc-site/",
  "files": 1676,
- "bytes": 109644683,
+ "bytes": 109644846,
  "refs_rewritten": {
   "scans": 452,
   "photos": 1176
