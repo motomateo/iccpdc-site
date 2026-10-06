@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICCPDC 1977 — Hartă</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<link rel="stylesheet" href="../explorer/vendor/theme.css">
+<link rel="stylesheet" href="map.css">
+</head>
+<body>
+<div id="map" aria-label="Hartă"></div>
+
+<aside id="panel">
+  <nav class="xnav" aria-label="Explorer">
+    <a class="back" href="../explorer/" data-i18n="back">Exploratorul</a>
+    <a href="../explorer/#flow" data-i18n="nav_flow">Argument</a>
+    <a href="../explorer/#network" data-i18n="nav_network">Rețea</a>
+    <a href="../explorer/#buildings" data-i18n="nav_buildings">Clădiri</a>
+    <a href="../explorer/#reader" data-i18n="nav_reader">Text</a>
+    <a href="../explorer/#stats" data-i18n="nav_stats">Statistici</a>
+  </nav>
+  <header>
+    <div class="brand">
+      <div class="kicker" data-i18n="kicker">Cutremurul din 4 martie 1977</div>
+      <h1 data-i18n="title">Harta sintezei ICCPDC</h1>
+    </div>
+    <div class="tools">
+      <button id="lang" title="RO / EN" aria-label="Limba / Language">EN</button>
+      <button id="theme" title="Temă" aria-label="Temă luminoasă / întunecată">◐</button>
+      <button id="collapse" title="Restrânge" aria-controls="panel" aria-expanded="true">–</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" aria-label="Caută clădire, localitate" data-i18n-ph="search" placeholder="Caută clădire, localitate…">
+      <ul id="results" hidden></ul>
+    </div>
+    <section>
+      <h2 data-i18n="layers">Straturi</h2>
+      <label class="layer"><input type="checkbox" data-layer="buildings" checked><span class="sw sw-b"></span><span data-i18n="l_buildings">Clădiri</span><em id="n-buildings"></em></label>
+      <label class="layer sub"><input type="checkbox" data-layer="footprints" checked><span class="sw sw-f"></span><span data-i18n="l_footprints">Amprenta actuală a parcelei</span><em id="n-footprints"></em></label>
+      <label class="layer"><input type="checkbox" data-layer="groups" checked><span class="sw sw-g"></span><span data-i18n="l_groups">Grupuri și zone</span><em id="n-groups"></em></label>
+      <label class="layer"><input type="checkbox" data-layer="places" checked><span class="sw sw-p"></span><span data-i18n="l_places">Locuri din text</span><em id="n-places"></em></label>
+      <label class="layer"><input type="checkbox" data-layer="counties" checked><span class="sw sw-c"></span><span data-i18n="l_counties">Avarii pe județe (tab. II.1)</span><em id="n-counties"></em></label>
+      <label class="layer ctx"><input type="checkbox" data-layer="register"><span class="sw sw-r"></span><span data-i18n="l_register">Registrul actual (dupacutremur)</span><em id="n-register"></em></label>
+    </section>
+    <section>
+      <label class="layer photomode"><input type="checkbox" id="photosonly"><span class="sw sw-ph"></span><span data-i18n="photos_only">Doar cu fotografii (Partea IV)</span><em id="n-photosonly"></em></label>
+      <label class="layer photomode simplmode"><input type="checkbox" id="simplonly"><span class="sw sw-si"></span><span data-i18n="simpl_only">Consolidare parțială / simplificată / locală</span><em id="n-simplonly"></em></label>
+      <div id="f-simpl" class="chips" style="margin:4px 0 0 4px"></div>
+    </section>
+    <section>
+      <h2 data-i18n="iv_title">Intervenții (din text)</h2>
+      <div id="f-iv" class="chips"></div>
+      <div class="seg small" id="colorby" style="margin-top:8px">
+        <span class="lbl" data-i18n="colorby">Colorează după</span>
+        <button data-c="outcome" data-i18n="c_outcome">efect 1977</button>
+        <button data-c="iv" data-i18n="c_iv">consolidare</button>
+        <button data-c="simpl" data-i18n="c_simpl">consolidare redusă</button>
+      </div>
+    </section>
+    <section>
+      <h2 data-i18n="outcome">Efect în 1977</h2>
+      <div id="f-outcome" class="chips"></div>
+    </section>
+    <section>
+      <h2 data-i18n="certainty">Siguranța localizării</h2>
+      <div id="f-status" class="chips"></div>
+    </section>
+    <section>
+      <h2 data-i18n="basemap">Fundal</h2>
+      <div class="seg" id="basemap">
+        <button data-b="auto" class="on" data-i18n="b_auto">auto</button>
+        <button data-b="dark" data-i18n="b_dark">întunecat</button>
+        <button data-b="light" data-i18n="b_light">luminos</button>
+        <button data-b="voyager" data-i18n="b_voyager">stradal</button>
+      </div>
+    </section>
+    <footer>
+      <a href="../explorer/" data-i18n="to_explorer">↗ Exploratorul de cunoștințe</a>
+      <span class="src" data-i18n="credits">Date: ICCPDC 1978; OSM; Wikidata; harta.dupacutremur.ro. Fundal © CARTO © OSM.</span>
+    </footer>
+  </div>
+</aside>
+
+<div id="legend"></div>
+
+<aside id="drawer" hidden aria-live="polite" aria-label="Detalii">
+  <button id="close" aria-label="Închide">×</button>
+  <div id="detail"></div>
+</aside>
+
+<script src="../explorer/vendor/a11y.js"></script>
+<script src="vendor/maplibre-gl.js"></script>
+<script src="data/index.js"></script>
+<script src="../explorer/data/photos.js"></script>
+<script src="../explorer/data/simplification.js"></script>
+<script src="../explorer/photosview.js"></script>
+<script src="map.js"></script>
+</body>
+</html>

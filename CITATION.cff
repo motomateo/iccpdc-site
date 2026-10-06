@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use these data or this software, please cite it as below."
+title: "ICCPDC 1977 — digitisation of the 1978 synthesis on the 4 March 1977 earthquake"
+abstract: "Transcription, knowledge layer, geocoded map and photo index of 'Cutremurul din România din 4 martie 1977 și efectele sale asupra construcțiilor — Sinteza monografiei' (ICCPDC, 1978), with a dossier on strengthening projects reduced to local repairs."
+authors:
+  - family-names: Sumbasacu
+    given-names: Matei
+    alias: motomateo
+date-released: 2026-10-06
+url: "https://motomateo.github.io/iccpdc-site/"
+license: MIT
+keywords: [Vrancea earthquake, 1977, Bucharest, seismic retrofitting, digitisation, ICCPDC]
+references:
+  - type: report
+    title: "Cutremurul din România din 4 martie 1977 și efectele sale asupra construcțiilor — Sinteza monografiei"
+    authors:
+      - name: "Institutul Central de Cercetare, Proiectare și Directivare în Construcții (ICCPDC)"
+    year: 1978

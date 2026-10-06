@@ -1,0 +1,48 @@
+{
+ "built_at": "2026-10-06T05:57:16+00:00",
+ "source_repo": "motomateo/iccpdc (private)",
+ "source_commit": "03556b7982895fdfc17f19aef67780757813fa09",
+ "source_dirty": false,
+ "image_profiles": {
+  "scans": [
+   1400,
+   48,
+   0
+  ],
+  "photos": [
+   1200,
+   64,
+   0.8
+  ],
+  "thumbs": [
+   360,
+   62,
+   0.5
+  ]
+ },
+ "site_url": "https://motomateo.github.io/iccpdc-site/",
+ "files": 1676,
+ "bytes": 109579132,
+ "refs_rewritten": {
+  "scans": 452,
+  "photos": 1176
+ },
+ "footprints": {
+  "kept_osm": 134,
+  "dropped_dupacutremur": 45
+ },
+ "images": {
+  "scans": 452,
+  "photos": 588,
+  "thumbs": 588,
+  "converted_this_run": 0
+ },
+ "excluded": [
+  "input/ (raw scans)",
+  "work/ (OCR, proofreading, caches, logs)",
+  "pipeline/",
+  "data/ tidy tables",
+  "dupacutremur register snapshot",
+  "footprints sourced from the dupacutremur register"
+ ]
+}

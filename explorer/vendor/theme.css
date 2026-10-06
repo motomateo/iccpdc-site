@@ -1,0 +1,37 @@
+/* ICCPDC theme — shared by explorer/ and map/.
+   Palette: Visme «Deep Vintage Mood» (#2): #244855 deep blue-teal · #E64833 vermilion ·
+   #874F41 terracotta · #90AEAD sage · #FBE9D0 parchment. Fonts: Piazzolla (serif) + Mulish (sans). */
+@import url("fonts.css");
+:root{
+  --p-teal:#244855; --p-vermilion:#E64833; --p-terracotta:#874F41; --p-sage:#90AEAD; --p-parchment:#FBE9D0;
+  --bg:#f8efe1; --panel:#fffaf2; --ink:#1d3640; --muted:#56666a; --line:#e4d6bf; --soft:#f1e5d0;
+  --accent:#E64833; --accent-ink:#b5301c; --accent-soft:#f9ddd3; --accent-2:#874F41; --link:#244855;
+  --hazard:#244855; --effect:#E64833; --observation:#5f8f8d; --cause:#874F41;
+  --lesson:#b58a2e; --solution:#4f7d5c; --recommendation:#2f6d8a; --future_step:#7d8a8c;
+  --mark:rgba(230,72,51,.22); --mark-line:#E64833;
+  --shadow:0 8px 28px rgba(36,72,85,.16);
+  --serif:"Piazzolla","Iowan Old Style",Georgia,serif;
+  --sans:"Mulish",system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1e24; --panel:#16303a; --ink:#f4e6cf; --muted:#9fb3b2; --line:#2a4651; --soft:#1d3b46;
+  --accent:#f0624d; --accent-soft:#3b2622; --accent-2:#c48a72; --link:#a9cfd0;
+  --hazard:#7fa6b8; --effect:#f0624d; --observation:#90AEAD; --cause:#c48a72;
+  --lesson:#e0b75a; --solution:#86b893; --recommendation:#7ab3cf; --future_step:#a2adae;
+  --mark:rgba(240,98,77,.28); --mark-line:#f0624d; --shadow:0 8px 30px rgba(0,0,0,.45);
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1e24; --panel:#16303a; --ink:#f4e6cf; --muted:#9fb3b2; --line:#2a4651; --soft:#1d3b46;
+  --accent:#f0624d; --accent-soft:#3b2622; --accent-2:#c48a72; --link:#a9cfd0;
+  --hazard:#7fa6b8; --effect:#f0624d; --observation:#90AEAD; --cause:#c48a72;
+  --lesson:#e0b75a; --solution:#86b893; --recommendation:#7ab3cf; --future_step:#a2adae;
+  --mark:rgba(240,98,77,.28); --mark-line:#f0624d; --shadow:0 8px 30px rgba(0,0,0,.45);
+}
+
+/* dark: accent is already light enough for text */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent-ink:#ff8a75}}
+:root[data-theme="dark"]{--accent-ink:#ff8a75}
+/* accessibility: visible keyboard focus everywhere, honour reduced motion */
+:focus-visible{outline:3px solid var(--recommendation,#2f6d8a);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

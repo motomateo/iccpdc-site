@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cutremurul din 1977 — explorator ICCPDC</title>
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23244855%22/%3E%3Cpath d=%22M3 17h6l3-7 4 14 3-9 2 2h8%22 stroke=%22%23E64833%22 stroke-width=%222.6%22 fill=%22none%22/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="t1" data-i18n="title">Cutremurul din 4 martie 1977</div>
+    <div class="t2" data-i18n="subtitle">ICCPDC · Sinteza monografiei, partea I (1978) — explorator</div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Secțiuni">
+    <a href="#flow" data-view="flow" data-i18n="nav_flow">Firul argumentului</a>
+    <a href="#network" data-view="network" data-i18n="nav_network">Rețeaua temelor</a>
+    <a href="#stats" data-view="stats" data-i18n="nav_stats">Statistici</a>
+    <a href="#photos" data-view="photos" data-i18n="nav_photos">Fotografii</a>
+    <a href="#simplification" data-view="simplification" data-i18n="nav_simpl">Consolidări reduse</a>
+    <a href="#buildings" data-view="buildings" data-i18n="nav_buildings">Clădiri</a>
+    <a href="#reader" data-view="reader" data-i18n="nav_reader">Text</a>
+    <a href="#search" data-view="search" data-i18n="nav_search">Căutare</a>
+    <a href="#sources" data-view="sources" data-i18n="nav_sources">Surse</a>
+    <a href="../map/" class="ext" data-i18n="nav_map">Hartă ↗</a>
+  </nav>
+  <button id="theme" class="ghost" title="Temă luminoasă / întunecată" aria-label="theme">◐</button>
+  <div class="lang">
+    <button data-lang="ro" class="on">RO</button><button data-lang="en">EN</button>
+  </div>
+</header>
+<main id="main"></main>
+<aside id="drawer" class="drawer" aria-hidden="true" role="dialog" aria-labelledby="drawer-title">
+  <div class="drawer-head"><button id="drawer-back" class="ghost" title="Înapoi" aria-label="Înapoi">←</button><span id="drawer-title"></span><button id="drawer-close" class="ghost" title="Închide" aria-label="Închide">✕</button></div>
+  <div id="drawer-body" class="drawer-body"></div>
+</aside>
+<div id="scan" class="scan" aria-hidden="true">
+  <div class="scan-head">
+    <button id="scan-prev" class="ghost">‹</button>
+    <span id="scan-title"></span>
+    <button id="scan-next" class="ghost">›</button>
+    <span class="grow"></span>
+    <button id="scan-close" class="ghost">✕</button>
+  </div>
+  <div class="scan-body" id="scan-body"><div class="scan-page" id="scan-page"><img id="scan-img" alt=""><div id="scan-marks"></div></div></div>
+</div>
+<script src="data/pages.js"></script>
+<script src="data/sections.js"></script>
+<script src="data/units.js"></script>
+<script src="data/statements.js"></script>
+<script src="data/links.js"></script>
+<script src="data/buildings.js"></script>
+<script src="data/vocab.js"></script>
+<script src="data/sources.js"></script>
+<script src="data/topicgraph.js"></script>
+<script src="data/stats.js"></script>
+<script src="data/photos.js"></script>
+<script src="data/simplification.js"></script>
+<script src="vendor/d3.v7.min.js"></script>
+<script src="network.js"></script>
+<script src="stats.js"></script>
+<script src="photosview.js"></script>
+<script src="simplifyview.js"></script>
+<script src="vendor/a11y.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
