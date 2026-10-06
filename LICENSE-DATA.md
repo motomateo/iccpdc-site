@@ -17,7 +17,8 @@ with a link to the site or the repository.
 - **OpenStreetMap-derived data** (building footprints, and coordinates whose source is `osm`): © OpenStreetMap contributors,
   Open Database Licence 1.0 (https://opendatacommons.org/licenses/odbl/). Reuse of these geometries must follow the ODbL.
 - **Wikidata** facts are CC0. Coordinates and identifiers taken from Wikipedia/Wikidata are cited per record.
-- **harta.dupacutremur.ro** (seismic-risk register): only identifiers (`building_uid`) are kept, as links. No geometries
-  or attributes from the register are republished on the public site.
+- **harta.dupacutremur.ro** (Bucharest seismic-risk register): building footprints taken from the register (`source:
+  dupacutremur` in `map/data/footprints.geojson`) and the register identifiers (`building_uid`) are credited to
+  harta.dupacutremur.ro and remain theirs; they are not covered by this licence. The register layer itself is not republished.
 - **External context** quoted in the simplification dossier (e.g. ordinulcriminal.ro) belongs to its publishers. It is
   cited, not reproduced.

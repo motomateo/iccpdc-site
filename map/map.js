@@ -13,11 +13,12 @@
       certainty: "Siguranța localizării", basemap: "Fundal", b_auto: "auto", b_dark: "întunecat", b_light: "luminos", b_voyager: "stradal",
       to_explorer: "↗ Exploratorul de cunoștințe", credits: "Date: ICCPDC 1978; OSM; Wikidata; harta.dupacutremur.ro. Fundal © CARTO © OSM.",
       collapsed: "prăbușită", demolished_after: "demolată ulterior", severe: "avarii grave", moderate: "avarii medii", light: "avarii ușoare",
+      damaged: "avariată (grad nespecificat)", ext_total: "prăbușire totală", ext_partial: "prăbușire parțială", from_photo: "legenda fotografiei",
       none: "comportare bună", unknown: "necunoscut", verified: "verificată (≥2 surse)", probable: "probabilă", single: "o singură sursă",
       area: "zonă", conflict: "surse în conflict", building: "Clădire", group: "Grup / zonă", place: "Loc", county: "Județ",
       address77: "Adresa în 1977", modern: "Adresa actuală", today: "Azi", geo: "Localizare", precision: "Precizie", sources: "Surse",
       statements: "Afirmații din text", open_expl: "Deschide în explorator", metrics: "Date raportate (tab. II.1)", mentions: "Menționat de",
-      damaged: "clădiri avariate raportate", nodata: "fără date numerice", mentioned: "doar menționat", legend_b: "Clădiri — efect în 1977",
+      cty_damaged: "clădiri avariate raportate", nodata: "fără date numerice", mentioned: "doar menționat", legend_b: "Clădiri — efect în 1977",
       legend_c: "Clădiri avariate raportate", stmts: "afirmații", standing: "în picioare", demolished: "demolată", replaced: "înlocuită",
       register: "Registrul de risc seismic (azi)", approx: "contur aproximativ al județului din 1977", part_of: "în 1977 parte din jud. Ilfov",
       height: "Regim de înălțime", period: "Perioada", system: "Structură", n_src: "surse independente", agree: "acord", why: "Observații",
@@ -32,11 +33,12 @@
       certainty: "Location certainty", basemap: "Basemap", b_auto: "auto", b_dark: "dark", b_light: "light", b_voyager: "streets",
       to_explorer: "↗ Knowledge explorer", credits: "Data: ICCPDC 1978; OSM; Wikidata; harta.dupacutremur.ro. Basemap © CARTO © OSM.",
       collapsed: "collapsed", demolished_after: "demolished afterwards", severe: "severe damage", moderate: "moderate damage", light: "light damage",
+      damaged: "damaged (degree not stated)", ext_total: "total collapse", ext_partial: "partial collapse", from_photo: "photo caption",
       none: "behaved well", unknown: "unknown", verified: "verified (≥2 sources)", probable: "probable", single: "single source",
       area: "area", conflict: "sources conflict", building: "Building", group: "Group / area", place: "Place", county: "County",
       address77: "Address in 1977", modern: "Modern address", today: "Today", geo: "Location", precision: "Precision", sources: "Sources",
       statements: "Statements in the text", open_expl: "Open in explorer", metrics: "Reported figures (table II.1)", mentions: "Mentioned by",
-      damaged: "damaged buildings reported", nodata: "no figures", mentioned: "mentioned only", legend_b: "Buildings — 1977 outcome",
+      cty_damaged: "damaged buildings reported", nodata: "no figures", mentioned: "mentioned only", legend_b: "Buildings — 1977 outcome",
       legend_c: "Damaged buildings reported", stmts: "statements", standing: "standing", demolished: "demolished", replaced: "replaced",
       register: "Seismic-risk register (today)", approx: "approximate outline of the 1977 county", part_of: "part of Ilfov county in 1977",
       height: "Height", period: "Period", system: "Structure", n_src: "independent sources", agree: "agreement", why: "Notes",
@@ -66,7 +68,7 @@
   const baseUrl = () => BASE[basemap === "auto" ? (isDark() ? "dark" : "light") : basemap];
 
   // ---------- palette
-  const OUT = {collapsed: "#E64833", demolished_after: "#874F41", severe: "#ef8a3c", moderate: "#e0b75a", light: "#90AEAD", none: "#4f7d5c", unknown: "#9aa5a6"};
+  const OUT = {collapsed: "#E64833", demolished_after: "#874F41", severe: "#ef8a3c", moderate: "#e0b75a", light: "#90AEAD", damaged: "#b9a37e", none: "#4f7d5c", unknown: "#9aa5a6"};
   const IV = {local: "#3fb6c9", global: "#d9a441", supports: "#e07a5f", loads: "#86b893", ground: "#a58ad1", demolition: "#874F41", temporary: "#e98fb0", generic: "#b9a37e", none: "#7b8a8c"};
   let ivOn = new Set(Object.keys(IV));   // which intervention classes are shown
   let colorBy = store.get("colorby", "outcome");
@@ -302,7 +304,9 @@
     const oc = p.outcome_1977 || "unknown";
     show(`<div class="kicker">${t(p.class === "group" ? "group" : "building")} · ${esc(p.locality || "")}</div><h2>${esc(p.name)}</h2>
       <span class="badge" style="background:${OUT[oc]}">${t(oc)}</span><span class="badge" style="background:#244855">${t(p.status || "single")}</span>
-      ${p.outcome_quote ? `<div class="quote">„${esc(p.outcome_quote)}”${textLink(p.outcome_unit)}</div>` : ""}
+      ${p.collapse_extent ? `<span class="badge" style="background:#874F41">${t("ext_" + p.collapse_extent)}</span>` : ""}
+      ${p.outcome_quote ? `<div class="quote">„${esc(p.outcome_quote)}”${textLink(p.outcome_unit)}${(p.outcome_ref || "").startsWith("v4_") ? ` <span class="tl">· ${t("from_photo")}</span>` : ""}</div>` : ""}
+      ${p.outcome_note ? `<p style="font-size:12px;opacity:.8;margin:2px 0 8px">${esc(p.outcome_note)}</p>` : ""}
       <dl class="meta">
         ${p.address_1977 ? `<dt>${t("address77")}</dt><dd>${esc(p.address_1977)}</dd>` : ""}
         ${p.modern_address ? `<dt>${t("modern")}</dt><dd>${esc(p.modern_address)}</dd>` : ""}
@@ -336,7 +340,7 @@
     const rows = ms.map(m => `<tr><td>${esc(m.measure)}<br><small>${esc(m.object_class)}</small></td><td class="num">${fmt(m.value)} ${m.unit === "pct" ? "%" : ""}${m.of_total_pct ? `<br><small>${esc(m.of_total_pct)} %</small>` : ""}</td>
       <td><small>„${esc(m.quote)}”${textLink(m.unit_id)}${m.note ? `<br><i>${esc(m.note)}</i>` : ""}</small></td></tr>`).join("");
     show(`<div class="kicker">${t("county")}</div><h2>${esc(p.name_1977 || p.name)}</h2>
-      ${p.damaged_reported != null ? `<p><b style="font-size:20px">${fmt(p.damaged_reported)}</b> ${t("damaged")} <small>(${esc(p.damaged_class)})</small></p>` : `<p>${t(p.n_mentions ? "mentioned" : "nodata")}</p>`}
+      ${p.damaged_reported != null ? `<p><b style="font-size:20px">${fmt(p.damaged_reported)}</b> ${t("cty_damaged")} <small>(${esc(p.damaged_class)})</small></p>` : `<p>${t(p.n_mentions ? "mentioned" : "nodata")}</p>`}
       ${p.geometry_basis === "approx_1977_union" ? `<p><small>⚠ ${t("approx")}: ${esc(p.boundary_note)}</small></p>` : ""}
       ${p.part_of_1977 ? `<p><small>${t("part_of")}</small></p>` : ""}
       ${rows ? `<h3>${t("metrics")}</h3><table>${rows}</table>` : ""}
